@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -239,39 +239,42 @@ namespace TeamCreation
         private void CreateCSVFile(DataTable dt, string strFilePath)
         {
             // Create the CSV file to which grid data will be exported.
-            var sw = new StreamWriter(strFilePath, false);
-
-            // First we will write the headers.
-            //DataTable dt = m_dsProducts.Tables[0];
-            int iColCount = dt.Columns.Count;
-
-            for (int i = 0; i < iColCount; i++)
+            using (var sw = new StreamWriter(strFilePath, false))
             {
-                sw.Write(dt.Columns[i]);
-                if (i < iColCount - 1)
-                {
-                    sw.Write(",");
-                }
-            }
-            sw.Write(sw.NewLine);
+                // First we will write the headers.
+                //DataTable dt = m_dsProducts.Tables[0];
+                int iColCount = dt.Columns.Count;
 
-            // Now write all the rows.
-            foreach (DataRow dr in dt.Rows)
-            {
                 for (int i = 0; i < iColCount; i++)
                 {
-                    if (!Convert.IsDBNull(dr[i]))
-                    {
-                        sw.Write(dr[i].ToString());
-                    }
+                    sw.Write(dt.Columns[i]);
                     if (i < iColCount - 1)
                     {
                         sw.Write(",");
                     }
                 }
+
                 sw.Write(sw.NewLine);
+
+                // Now write all the rows.
+                foreach (DataRow dr in dt.Rows)
+                {
+                    for (int i = 0; i < iColCount; i++)
+                    {
+                        if (!Convert.IsDBNull(dr[i]))
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+
+                        if (i < iColCount - 1)
+                        {
+                            sw.Write(",");
+                        }
+                    }
+
+                    sw.Write(sw.NewLine);
+                }
             }
-            sw.Close();
         }
         #endregion
 
