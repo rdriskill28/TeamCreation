@@ -48,7 +48,7 @@ namespace TeamCreation
                 List<string> names = participants.Keys.ToList();
                 
                 // output the enum description as the error message if there are issues
-                if (_fileError != FileReadErrorCode.OK)
+                if (_fileError != FileReadErrorCode.Ok)
                 {
                     tbMessage.Text = "Failed to read data.  Error: " + _fileError.GetDescription();                    
                     tbMessage.Style = _styleFailure;
@@ -163,7 +163,7 @@ namespace TeamCreation
         #region File Handling
         private Dictionary<string, float> GetParticipantsFromCsv(string filePath)
         {
-            _fileError = FileReadErrorCode.OK;
+            _fileError = FileReadErrorCode.Ok;
             var participants = new Dictionary<string, float>();
 
             // validate file (error code set here and checked later)
