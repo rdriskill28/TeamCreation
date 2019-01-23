@@ -1,0 +1,13 @@
+﻿<Application x:Class="TeamCreation.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="StyleSuccess" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Green"></Setter>
+        </Style>
+        <Style x:Key="StyleFailure" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Red"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>
